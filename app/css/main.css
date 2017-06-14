@@ -392,6 +392,42 @@ template {
 [hidden] {
   display: none; }
 
+@font-face {
+  font-family: 'existenceLight';
+  src: url("../../fonts/existencelight-webfont.woff2") format("woff2"), url("../../fonts/existencelight-webfont.woff") format("woff"), url("../../fonts/existencelight-webfont.svg#existencelight") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'latoLight';
+  src: url("../../fonts/latolight-webfont.woff2") format("woff2"), url("../../fonts/latolight-webfont.woff") format("woff"), url("../../fonts/latolight-webfont.svg#latolight") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'latoRegular';
+  src: url("../../fonts/latoregular-webfont.woff2") format("woff2"), url("../../fonts/latoregular-webfont.woff") format("woff"), url("../../fonts/latoregular-webfont.svg#latoregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'latoHairline';
+  src: url("../../fonts/latohairline-webfont.woff2") format("woff2"), url("../../fonts/latohairline-webfont.woff") format("woff"), url("../../fonts/latohairline-webfont.svg#latohairline") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'latoBold';
+  src: url("../../fonts/latobold-webfont.woff2") format("woff2"), url("../../fonts/latobold-webfont.woff") format("woff"), url("../../fonts/latobold-webfont.svg#latobold") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'titilliumWebLight';
+  src: url("../../fonts/titilliumweblight-webfont.woff2") format("woff2"), url("../../fonts/titilliumweblight-webfont.woff") format("woff"), url("../../fonts/titilliumweblight-webfont.svg#titillium_weblight") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
@@ -401,6 +437,8 @@ html, body {
   height: 100%; }
 
 body {
+  font: 18px/30px latoLight;
+  color: #222;
   -webkit-font-smoothing: antialiased; }
 
 ul {
@@ -413,6 +451,10 @@ li {
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   font-weight: normal; }
+
+a {
+  text-decoration: none;
+  color: #222; }
 
 a:link, a:visited, a:hover, a:active {
   border: none;
@@ -428,15 +470,63 @@ a:link, a:visited, a:hover, a:active {
   margin: 0 auto;
   position: relative; }
 
-.headerSection {
+.logo {
+  font: 30px / 30px existenceLight;
+  color: #676767; }
+  .logo__colorant {
+    color: #9f449b; }
+
+.header {
   background: url("../../img/background/headerBackground.png") no-repeat center center;
   -webkit-background-size: cover;
           background-size: cover;
   height: 1100px; }
 
-.headerSectionContent {
+.headerContent {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
-          transform: translateY(-50%); }
+          transform: translateY(-50%);
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: column nowrap;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: latoHairline;
+  color: #fff; }
+  .headerContent__title {
+    font-size: 48px;
+    line-height: 48px;
+    margin-bottom: 30px; }
+  .headerContent__description {
+    font-size: 24px;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 120px; }
+  .headerContent__menu {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; }
+
+.headerContent__menuLink {
+  display: block;
+  width: 167px;
+  height: 181px;
+  background: url("../../img/content/header/linkBackground.png") no-repeat; }
+
+.logo_headerSection {
+  font-size: 90px;
+  line-height: 90px;
+  color: #fff;
+  margin-bottom: 80px; }

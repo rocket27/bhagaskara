@@ -8,6 +8,8 @@ html, body {
 }
 
 body {
+	font: $baseFont;
+	color: $colorType3;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -25,6 +27,11 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
 }
 
+a {
+	text-decoration: none;
+	color: $colorType3;
+}
+
 a:link, a:visited, a:hover, a:active {
 	border: none;
 	outline: none;
@@ -40,4 +47,12 @@ a:link, a:visited, a:hover, a:active {
 	height: 100%;
 	margin: 0 auto;
 	position: relative;
+}
+
+.logo {
+	font: 30px / 30px existenceLight;
+	color: $colorType6;
+	&__colorant {
+		color: $colorType2;
+	}
 }

@@ -29,3 +29,15 @@ a:link, a:visited, a:hover, a:active {
 	border: none;
 	outline: none;
 }
+
+.wrapper {
+	min-width: 1160px;
+	overflow: hidden;
+}
+
+.container {
+	width: 1140px;
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
+}

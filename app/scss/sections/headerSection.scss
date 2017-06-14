@@ -1,0 +1,9 @@
+.headerSection {
+    background: url('../../img/background/headerBackground.png') no-repeat center center;
+    background-size: cover;
+    height: 1100px;
+}
+
+.headerSectionContent {
+    @include verticalAlign;
+}

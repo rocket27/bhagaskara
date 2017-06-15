@@ -1,0 +1,30 @@
+.navigation {
+    height: 142px;
+    &__logo {
+        width: 40%;
+    }
+    &__menu {
+        width: 60%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+    }
+    &__link {
+        display: block;
+        line-height: 18px;
+        text-transform: uppercase;
+        color: $colorType6;
+        transition: color .3s;
+        &:hover {
+            color: $colorType2;
+        }
+    }
+}
+
+.navigationContent {
+    width: 100%;
+    @include verticalAlign;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}

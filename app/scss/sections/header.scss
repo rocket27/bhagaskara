@@ -1,0 +1,84 @@
+.header {
+    background: url('../../img/background/headerBackground.png') no-repeat center center;
+    background-size: cover;
+    height: 1100px;
+}
+
+.headerContent {
+    @include verticalAlign;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    font-family: latoHairline;
+    color: $colorType1;
+    &__title {
+        font-size: 48px;
+        line-height: 48px;
+        margin-bottom: 30px; 
+    }
+    &__description {
+        font-size: 24px;
+        line-height: 24px;
+        text-align: center;
+        margin-bottom: 120px;
+    }
+    &__navigation {
+        width: 100%;
+    }
+    &__menu {
+        display: flex;
+        height: 390px;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+    &__menuItem_upper {
+        align-self: flex-start;
+    }
+    &__menuLink {
+        display: flex;
+        width: 167px;
+        height: 181px;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        color: $colorType1;
+        transition: background .3s;
+        background: url('../../img/content/header/linkBackground.png') no-repeat;
+        &:hover {
+            background: url('../../img/content/header/linkBackgroundHover.png') no-repeat;
+        }
+    }
+    &__menuIcon {
+        margin-bottom: 20px;
+    }
+    &__menuImage {
+        display: block;
+    }
+    &__menuName {
+        font-family: latoRegular;
+    }
+}
+
+.scrollDownLink {
+    width: 86px;
+    height: 93px;
+    background: url('../../img/content/header/scrollDownBackground.png') no-repeat;
+    position: relative;
+    transition: background .3s;
+    &:hover {
+        background: url('../../img/content/header/scrollDownBackgroundHover.png') no-repeat;
+    }
+    &__icon {
+        @include verticalAlign;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.logo_headerSection {
+    font-size: 90px;
+    line-height: 90px;
+    color: $colorType1;
+    margin-bottom: 80px;
+}

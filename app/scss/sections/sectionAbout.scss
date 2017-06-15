@@ -1,0 +1,32 @@
+.sectionAbout {
+    height: 1026px;
+}
+
+.sectionTitle_sectionAbout {
+    width: 100%;
+    margin-bottom: 140px;
+}
+
+.aboutContent {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    @include verticalAlign;
+    &__picture {
+        width: 653px;
+    }
+    &__image {
+        display: block;
+    }
+    &__description {
+        width: 473px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+    }
+}
+
+.button_sectionAbout {
+    align-self: flex-end;
+}

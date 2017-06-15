@@ -1,0 +1,45 @@
+.sectionFeature {
+    height: 794px;
+    overflow: hidden;
+    background-color: #eee;
+}
+
+.featureContent {
+    @include verticalAlign;
+}
+
+.columnsList {
+    display: flex;
+    justify-content: space-between;
+    &__column {
+        width: 22%;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: baseline;
+        align-items: center;
+        color: $colorType6;        
+    }
+    &__picture {
+        width: 172px;
+        height: 186px;
+        background: url('../../img/content/sectionFeature/columnBackground.png') no-repeat;
+        position: relative;
+        margin-bottom: 40px;
+        &_colorful {
+            background: url('../../img/content/sectionFeature/columnBackgroundColorful.png') no-repeat;
+        }
+    }
+    &__icon {
+        display: block;
+        @include verticalAlign;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    &__name {
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+    &__description {
+        text-align: center;
+    }
+}

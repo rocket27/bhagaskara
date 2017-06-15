@@ -52,7 +52,50 @@ a:link, a:visited, a:hover, a:active {
 .logo {
 	font: 30px / 30px existenceLight;
 	color: $colorType6;
-	&__colorant {
-		color: $colorType2;
+}
+
+.sectionTitle {
+	text-align: center;
+	&__heading {
+		display: inline-block;
+		font: 48px / 48px existenceLight;
+		color: $colorType6;
+		padding: 30px 40px;
+		background: url('../../img/decor/angleRightTop.png') no-repeat right top, 
+					url('../../img/decor/angleLeftBottom.png') no-repeat left bottom;
 	}
+}
+
+.logo__colorant, .sectionTitle__colorant {
+	display: inline-block;
+	color: $colorType2;
+}
+
+.button {
+	width: 228px;
+	height: 72px;
+	text-align: center;
+	line-height: 72px;
+	color: $colorType1;
+	border-radius: 5px;
+	background-color: $colorType2;
+	box-shadow: 0 4px #6b2e68;
+	margin-bottom: 4px;
+}
+
+// ScrollStyle
+::-webkit-scrollbar-track {
+	background-color: $colorType6;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color:$colorType5;
+}
+
+::-webkit-scrollbar-thumb:hover{
+	background-color:$colorType2;
+}
+
+::-webkit-scrollbar{
+	width: 6px;
 }

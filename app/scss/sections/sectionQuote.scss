@@ -3,3 +3,26 @@
     background: url('../../img/background/quoteBackground.png') no-repeat center center;
     background-size: cover;
 }
+
+.quoteContent {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    @include verticalAlign;
+    &__picture {
+        width: 167px;
+        height: 181px;
+        background: url('../../img/content/polygon.png') no-repeat;
+        position: relative;
+        margin-bottom: 60px;
+    }
+    &__image {
+        @include iconСentering;
+    }
+    &__text {
+        font-size: 48px;
+        line-height: 48px;
+        color: $colorType1;
+    }
+}

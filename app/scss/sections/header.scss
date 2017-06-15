@@ -44,9 +44,9 @@
         align-items: center;
         color: $colorType1;
         transition: background .3s;
-        background: url('../../img/content/header/linkBackground.png') no-repeat;
+        background: url('../../img/content/polygon.png') no-repeat;
         &:hover {
-            background: url('../../img/content/header/linkBackgroundHover.png') no-repeat;
+            background: url('../../img/content/header/polygonHover.png') no-repeat;
         }
     }
     &__menuIcon {
@@ -63,11 +63,11 @@
 .scrollDownLink {
     width: 86px;
     height: 93px;
-    background: url('../../img/content/header/scrollDownBackground.png') no-repeat;
+    background: url('../../img/content/header/scrollDown.png') no-repeat;
     position: relative;
     transition: background .3s;
     &:hover {
-        background: url('../../img/content/header/scrollDownBackgroundHover.png') no-repeat;
+        background: url('../../img/content/header/scrollDownHover.png') no-repeat;
     }
     &__icon {
         @include verticalAlign;

@@ -3,3 +3,10 @@
     top: 50%;
     transform: translateY(-50%);
 }
+
+@mixin iconСentering {
+    display: block;
+    @include verticalAlign;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

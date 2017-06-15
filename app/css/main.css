@@ -611,9 +611,9 @@ a:link, a:visited, a:hover, a:active {
     -webkit-transition: background .3s;
     -o-transition: background .3s;
     transition: background .3s;
-    background: url("../../img/content/header/linkBackground.png") no-repeat; }
+    background: url("../../img/content/polygon.png") no-repeat; }
     .headerContent__menuLink:hover {
-      background: url("../../img/content/header/linkBackgroundHover.png") no-repeat; }
+      background: url("../../img/content/header/polygonHover.png") no-repeat; }
   .headerContent__menuIcon {
     margin-bottom: 20px; }
   .headerContent__menuImage {
@@ -624,13 +624,13 @@ a:link, a:visited, a:hover, a:active {
 .scrollDownLink {
   width: 86px;
   height: 93px;
-  background: url("../../img/content/header/scrollDownBackground.png") no-repeat;
+  background: url("../../img/content/header/scrollDown.png") no-repeat;
   position: relative;
   -webkit-transition: background .3s;
   -o-transition: background .3s;
   transition: background .3s; }
   .scrollDownLink:hover {
-    background: url("../../img/content/header/scrollDownBackgroundHover.png") no-repeat; }
+    background: url("../../img/content/header/scrollDownHover.png") no-repeat; }
   .scrollDownLink__icon {
     position: absolute;
     top: 50%;
@@ -821,3 +821,45 @@ a:link, a:visited, a:hover, a:active {
   background: url("../../img/background/quoteBackground.png") no-repeat center center;
   -webkit-background-size: cover;
           background-size: cover; }
+
+.quoteContent {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: column nowrap;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%); }
+  .quoteContent__picture {
+    width: 167px;
+    height: 181px;
+    background: url("../../img/content/polygon.png") no-repeat;
+    position: relative;
+    margin-bottom: 60px; }
+  .quoteContent__image {
+    display: block;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); }
+  .quoteContent__text {
+    font-size: 48px;
+    line-height: 48px;
+    color: #fff; }

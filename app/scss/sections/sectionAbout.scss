@@ -12,7 +12,7 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    @include verticalAlign;
+    @extend %verticalAlign;
     &__picture {
         width: 653px;
     }

@@ -5,7 +5,7 @@
 }
 
 .featureContent {
-    @include verticalAlign;
+    @extend %verticalAlign;
 }
 
 .columnsList {
@@ -30,7 +30,7 @@
         }
     }
     &__icon {
-        @include iconСentering;
+        @extend %iconСentering;
     }
     &__name {
         font-size: 24px;

@@ -23,7 +23,7 @@
 
 .navigationContent {
     width: 100%;
-    @include verticalAlign;
+    @extend %verticalAlign;
     display: flex;
     justify-content: space-between;
     align-items: baseline;

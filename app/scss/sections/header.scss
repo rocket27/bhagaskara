@@ -5,7 +5,7 @@
 }
 
 .headerContent {
-    @include verticalAlign;
+    @extend %verticalAlign;
     width: 100%;
     display: flex;
     flex-flow: column nowrap;
@@ -70,7 +70,7 @@
         background: url('../../img/content/header/scrollDownHover.png') no-repeat;
     }
     &__icon {
-        @include verticalAlign;
+        @extend %verticalAlign;
         left: 50%;
         transform: translate(-50%, -50%);
     }

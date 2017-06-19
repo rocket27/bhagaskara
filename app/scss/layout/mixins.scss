@@ -1,12 +1,24 @@
-@mixin verticalAlign {
+%verticalAlign {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }
 
-@mixin iconСentering {
+%iconСentering {
     display: block;
-    @include verticalAlign;
+    @extend %verticalAlign;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+%flexColumn {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+%flexRowWrap {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
 }

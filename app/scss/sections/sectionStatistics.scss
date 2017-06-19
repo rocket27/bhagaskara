@@ -1,0 +1,63 @@
+.sectionStatistics {
+    height: 906px;
+    font-family: helveticaNeueLTStdLt;
+    color: $colorType4;
+    background-color: #eee;
+}
+
+.container_sectionStatistics {
+    width: 950px;
+}
+
+.statisticsContent {
+    width: 100%;
+    @extend %verticalAlign;
+}
+
+.statisticList {
+    @extend %flexRowWrap;
+    margin-bottom: 140px;
+    &__parameter {
+        @extend %flexColumn;
+    }
+    &__amount {
+        font-size: 64px;
+        line-height: 64px;
+        color: $colorType3;
+        margin-bottom: 16px;
+    }
+    &__index {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+.reviewSlider {
+    width: 890px;
+    &__slide {
+        @extend %flexColumn;
+    }
+    &__userPhoto {
+        width: 170px;
+        height: 170px;
+        border-radius: 50%;        
+        overflow: hidden;
+        margin-bottom: 40px;
+    }
+    &__image {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    &__rewiewText {
+        font-size: 33px;
+        line-height: 34px;
+        color: #4b4b4b;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    &__userName {
+        font: 20px / 26px helveticaNeueLTStdBdCn;
+        text-transform: uppercase;
+    }
+}

@@ -1,15 +1,19 @@
-.sectionQuote {
+.sectionIntermediate {
     height: 624px;
-    background: url('../../img/background/quoteBackground.png') no-repeat center center;
+    background: url('../../img/background/intermediateBackground.png') no-repeat center center;
     background-size: cover;
 }
 
-.quoteContent {
+.container_sectionIntermediate {
+    width: 740px;
+}
+
+.intermediateContent {
     width: 100%;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    @include verticalAlign;
+    @extend %verticalAlign;
     &__picture {
         width: 167px;
         height: 181px;
@@ -18,11 +22,12 @@
         margin-bottom: 60px;
     }
     &__image {
-        @include iconСentering;
+        @extend %iconСentering;
     }
     &__text {
         font-size: 48px;
         line-height: 48px;
+        text-align: center;
         color: $colorType1;
     }
 }

@@ -1,0 +1,119 @@
+.sectionTeam {
+    height: 1930px;
+}
+
+.teamContent {
+    width: 100%;    
+    @extend %verticalAlign;
+    @extend %flexColumn;
+    &__controls {
+        width: 135px;
+        display: flex;
+        justify-content: space-between;        
+        margin: 130px 0 160px;
+    }
+    &__controlIcon {
+        width: 64px;
+        height: 70px;
+        background: url('../../img/content/sectionTeam/carouselButtonBg.png') no-repeat;
+        position: relative;
+    }
+    &__image {
+        @extend %iconСentering;
+    }
+}
+
+.teamMembers {
+    width: 100%;
+    &__peopleList {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__column {
+        @extend %flexColumn;
+    }
+    &__photo {
+        width: 252px;
+        height: 252px;
+        margin-bottom: 80px;
+    }
+    &__image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+    &__name {
+        font: 24px / 24px latoBold;
+        text-transform: uppercase;
+        color: #484848;
+        margin-bottom: 20px;
+    }
+    &__position {
+        font-family: latoRegular;
+        color: $colorType4;
+        margin-bottom: 30px;
+    }
+    &__socials {
+        width: 120px;
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 120px;
+    }
+    &__link:hover .facebookCircle {
+        fill: #3B5998;
+    }
+    &__link:hover .facebookLetter, &__link:hover .googlePlusLetter, &__link:hover .googlePlusLetterStroke {
+        fill: #fff;
+    }
+    &__link:hover .googlePlusCircle, {
+        fill: #DC4E41;
+    }
+    &__icon {
+        display: block;
+        width: 48px;
+        height: 48px;
+    }
+}
+
+.facebookCircle, .googlePlusCircle, {
+    fill: transparent;
+}
+
+.facebookLetter {
+    fill: #3B5998;
+}
+
+.googlePlusLetter, .googlePlusLetterStroke {
+    fill: #DC4E41;
+}
+
+.facebookCircle, .googlePlusCircle, .googlePlusLetterStroke, .facebookLetter, .googlePlusLetter {
+    transition: fill .3s;
+}
+
+.teamSkills {
+    width: 960px;
+    @extend %flexRowWrap;
+    margin-top: 200px;
+    &__item {
+        width: 44%;
+        @extend %flexRowWrap;
+        align-items: baseline;
+    }
+    &__name {
+        font: 22px / 24px helveticaNeueLTStdBd;
+        color: $colorType3;
+        text-transform: uppercase;
+    }
+    &__percent {
+        font: 24px / 24px helveticaNeueLTStdLt;
+        color: $colorType4;
+    }
+    &__graph {
+        margin: 20px 0 40px;
+    }
+    &__image {
+        display: block;
+    }
+}

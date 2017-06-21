@@ -1,7 +1,9 @@
 $(document).ready(function(){
   $(".owl-carousel").owlCarousel({
       loop:true,
-      nav:false,
-      items:1
+      nav:true,
+      margin:200,
+      items:1,
+      smartSpeed:1250
   });
 });

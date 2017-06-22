@@ -44,7 +44,8 @@ let extJs = [ // Массив сторонних библиотек JS в нео
 
 let extCss = [ // Массив сторонних библиотек CSS в необходимом порядке
     'node_modules/normalize.css/normalize.css',
-    'node_modules/owl.carousel/dist/assets/owl.carousel.css'
+    'node_modules/owl.carousel/dist/assets/owl.carousel.css',
+    'node_modules/owl.carousel/dist/assets/owl.theme.default.css'
     // остальные файлы
 ]
 
@@ -80,6 +81,8 @@ gulp.task('external:css', function() {
     return gulp.src(extCss) // Берем массив сторонних css файлов
         .pipe(concat('external.min.css')) // Собираем все в новом файле external.min.css
         .pipe(minifyCss()) // Сжимаем файл
+        .pipe(sourceMaps.init())
+        .pipe(sourceMaps.write())
         .pipe(gulp.dest(dest.css)); // Кладем готовый файл в папку dist/css
 });
 

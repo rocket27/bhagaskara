@@ -1,0 +1,75 @@
+.sectionContact {
+    height: 1320px;
+    font-family: helveticaNeueLTStdLt;
+    font-size: 23px;
+}
+
+.contactContect {
+    @extend %verticalAlign;
+    @extend %flexColumn;
+    &__wrapper {
+        @extend %flexRowWrap;
+        margin: 170px 0 35px;
+    }
+}
+
+// .sectionTitle_sectionContent {
+//     width: 100%;
+// }
+
+.contactForm, .contactInfo {
+    width: 48%;
+}
+
+.contactForm {
+    @extend %flexColumnAlignStart;
+    &__input, &__textArea {
+        width: 530px;
+        border: 1px solid #808080;
+        padding-left: 30px;
+    }
+    &__input {
+        height: 76px;
+        margin-bottom: 40px;
+    }
+    &__textArea {
+        height: 282px;
+        resize: none;
+        padding: 30px;
+    }
+}
+
+.contactInfo {
+    @extend %flexColumnAlignStart;
+    justify-content: space-between;
+    font: 28px / 38px helveticaNeueLTStdBdCn;
+    &__text {
+        font: 23px / 30px helveticaNeueLTStdLt;
+        // margin-bottom: 60px;
+    }
+    &__address {
+        // margin-bottom: 50px;
+    }
+    &__tel {
+        @extend %flexColumnAlignStart;
+    }
+    &__social {
+        width: 480px;
+        @extend %flexRowWrap;
+        // align-self: flex-end;
+    }
+    &__social-icon {
+        display: block;
+        width: 76px;
+        height: 76px;
+    }
+}
+
+.button_contactFormSubmit {
+    align-self: flex-start;
+    margin-bottom: 160px;
+}
+
+.logo_sectionContact {
+    font-size: 52px;
+}

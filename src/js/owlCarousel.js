@@ -1,6 +1,6 @@
-$(document).ready(function(){
+$(document).ready(function() {
     
-    $(".owl-carousel").owlCarousel({
+    $(".owl-carousel-team").owlCarousel({
         loop:true,
         nav:false,
         dots:true,
@@ -12,17 +12,28 @@ $(document).ready(function(){
         autoplayHoverPause:true
     });
 
-    var owl = $('.owl-carousel');
+    var owl = $('.owl-carousel-team');
     owl.owlCarousel();
 
-    $('.controlPrev').click(function(e) {
+    $('.teamControlPrev').click(function(e) {
         e.preventDefault();
         owl.trigger('prev.owl.carousel');
     })
 
-    $('.controlNext').click(function(e) {
+    $('.teamControlNext').click(function(e) {
         e.preventDefault();
         owl.trigger('next.owl.carousel');
+    });
+
+    $(".owl-carousel-review").owlCarousel({
+        loop:true,
+        nav:false,
+        dots:true,
+        margin:100,
+        items:1,
+        smartSpeed:2000,
+        autoplay:true,
+        autoplayTimeout:10000,
     });
 
 });

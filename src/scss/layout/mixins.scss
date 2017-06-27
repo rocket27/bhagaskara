@@ -17,6 +17,11 @@
     align-items: center;
 }
 
+%flexColumnAlignStart {
+    @extend %flexColumn;
+    align-items: flex-start;
+}
+
 %flexRowWrap {
     display: flex;
     flex-flow: row wrap;

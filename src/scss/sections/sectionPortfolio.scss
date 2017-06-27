@@ -1,0 +1,109 @@
+.sectionPortfolio {
+    height: 1540px;
+    font-family: helveticaNeueLTStdLt;
+}
+
+.portfolioContent {
+    @extend %verticalAlign;
+    text-align: center;
+    
+}
+
+.tabs {
+    @extend %flexColumn;
+    margin-bottom: 50px;
+}
+
+.tabs__controls {
+    width: 406px;
+    @extend %flexRowWrap;
+    margin: 80px 0 70px;
+    &-item_active &-link {
+        background-color: $colorType2;
+        color: $colorType1;
+        border: none;
+    }
+    &-link {
+        display: block;
+        width: 86px;
+        height: 40px;
+        font-size: 18px;
+        line-height: 40px;
+        color: $colorType3;
+        text-align: center;
+        text-transform: uppercase;        
+        border: 1px solid black;
+        border-radius: 4px;
+        transition: all .5s;
+        &:hover {
+            background-color: $colorType2;
+            color: $colorType1;
+            border-color: $colorType2;
+        }
+    }
+}
+
+ .tabs__content-item {
+    display: none;
+    &_active {
+        display: block;
+    }
+}
+
+.portfolioTab {
+    @extend %flexRowWrap;
+    &__item {
+        @extend %flexColumn;
+    }
+    &__link {
+        margin-bottom: 20px;
+        transition: all .5s;
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+    &__picture {
+        width: 360px;
+        height: 360px;
+        overflow: hidden;
+        position: relative;
+        &::before, &::after {
+            content: '';
+            display: block;
+            opacity: 0;
+            transition: opacity .5s;
+        }
+        &::before {
+            width: 360px;
+            height: 360px;
+            background-color: rgba(86, 93, 103, .4);
+            position: absolute;
+            z-index: 10;
+        }
+        &::after {
+            width: 154px;
+            height: 154px;
+            background: url('../../img/content/sectionPortfolio/projectImage_hover.png') no-repeat;
+            @extend %iconСentering;
+            z-index: 20;
+        }
+    }
+    &__image {
+        @extend %iconСentering;
+    }
+    &__link:hover &__picture::before, &__link:hover &__picture::after {
+        opacity: 1;
+    }
+    &__projectName {
+        font-size: 24px;
+        line-height: 26px;
+        margin-bottom: 10px;
+    }
+    &__features {
+        font-size: 16px;
+        line-height: 26px;
+        color: $colorType4;
+        text-transform: lowercase;
+        margin-bottom: 30px;
+    }
+}

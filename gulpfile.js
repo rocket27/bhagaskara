@@ -1,186 +1,225 @@
-// ----------------------------------------------------------------------------------------------------------------------------- //
+// --------------------------------------------------------------- //
 // Plugins
-// ----------------------------------------------------------------------------------------------------------------------------- //
-const gulp         = require('gulp'),
-      sass         = require('gulp-sass'), //Подключаем Sass пакет
+// --------------------------------------------------------------- //
+
+const del          = require('del'),
+      gulp         = require('gulp'),
+      sass         = require('gulp-sass'),
+      sftp         = require('gulp-sftp'),
+      wait         = require('gulp-wait'),
       cache        = require('gulp-cache'),
       concat       = require('gulp-concat'),
       uglify       = require('gulp-uglify'),
       notify       = require('gulp-notify'),
+      gulpIf       = require('gulp-if'),
+      rename       = require('gulp-rename'),
       plumber      = require('gulp-plumber'),
       imageMin     = require('gulp-imagemin'),
       minifyCss    = require('gulp-csso'),
       sourceMaps   = require('gulp-sourcemaps'),
       runSequence  = require('run-sequence'),
-      browserSync  = require('browser-sync'), // Подключаем Browser Sync
-      autoPrefixer = require('gulp-autoprefixer'); // Подключаем библиотеку для автоматического добавления вендорных префиксов
+      browserSync  = require('browser-sync'),
+      autoPrefixer = require('gulp-autoprefixer');
       
-// ----------------------------------------------------------------------------------------------------------------------------- //
+// --------------------------------------------------------------- //
 // Settings
-// ----------------------------------------------------------------------------------------------------------------------------- //
-let src = {
-    mainScss: 'src/scss/main.scss',
-       fonts: 'src/fonts/**/*.*',
-        sass: 'src/scss/**/*.scss',
-         img: 'src/img/**/*.*',
-          js: 'src/js/**/*.js'
-};
+// --------------------------------------------------------------- //
 
-let dest = {
-    minCss: 'internal.min.css',
-     minJs: 'internal.min.js',
-     fonts: 'dist/fonts',
-      html: 'dist/**/*.html',
-       css: 'dist/css',
-       img: 'dist/img',
-        js: 'dist/js'
-};
+const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 
-let extJs = [ // Массив сторонних библиотек JS в необходимом порядке
+let jsModules = [ // Массив своих JS файлов в необходимом порядке
+    'src/js/owlCarousel.js',
+    'src/js/tabs.js'
+    // остальные файлы
+]
+
+let vendorJs = [ // Массив сторонних библиотек JS в необходимом порядке
     'node_modules/jquery/dist/jquery.js',
     'node_modules/owl.carousel/dist/owl.carousel.js'
     // остальные файлы
 ]
 
-let extCss = [ // Массив сторонних библиотек CSS в необходимом порядке
+let vendorCss = [ // Массив сторонних библиотек CSS в необходимом порядке
     'node_modules/normalize.css/normalize.css',
     'node_modules/owl.carousel/dist/assets/owl.carousel.css',
     'node_modules/owl.carousel/dist/assets/owl.theme.default.css'
     // остальные файлы
 ]
 
-// ----------------------------------------------------------------------------------------------------------------------------- //
-// Task: SASS
-// ----------------------------------------------------------------------------------------------------------------------------- //
-gulp.task('sass', function() {
+// --------------------------------------------------------------- //
+// Task: HTML. Перенос HTML файлов в /dist
+// --------------------------------------------------------------- //
 
-    return gulp.src(src.mainScss)
-        .pipe(plumber({
-            errorHandler: notify.onError(function (err) {
-                return {title: 'SCSS error!', message: err.message}
-            })
-        }))
-        .pipe(sass())
-        .pipe(autoPrefixer('last 2 versions'))
-        .pipe(concat('internal.min.css'))
-        .pipe(gulp.dest(dest.css))
-        .pipe(minifyCss())
-        .pipe(sourceMaps.init())
-        .pipe(sourceMaps.write())
-        .pipe(gulp.dest(dest.css))
-        .pipe(browserSync.reload({
-            stream: true
-        }));
+gulp.task('html', function() {
+    return gulp.src('src/*.html')
+        .pipe(gulp.dest('dist'))
 });
 
-// ----------------------------------------------------------------------------------------------------------------------------- //
-// Task: External CSS. Сборка и сжатие сторонних CSS файлов с последующим перемещением готового файла в dist/css
-// ----------------------------------------------------------------------------------------------------------------------------- //
-gulp.task('external:css', function() {
+// --------------------------------------------------------------- //
+// Task: FONTS. Перенос шрифтов в /dist/fonts
+// --------------------------------------------------------------- //
 
-    return gulp.src(extCss) // Берем массив сторонних css файлов
-        .pipe(concat('external.min.css')) // Собираем все в новом файле external.min.css
-        .pipe(minifyCss()) // Сжимаем файл
-        .pipe(sourceMaps.init())
-        .pipe(sourceMaps.write())
-        .pipe(gulp.dest(dest.css)); // Кладем готовый файл в папку dist/css
+gulp.task('fonts', function() {
+    return gulp.src('src/fonts/**/*.*')
+        .pipe(gulp.dest('dist/fonts'))
 });
 
-// Данный таск нужно запускать вручную, чтобы создать файл external.min.css и поместить его в папку dist/scc 
-// и каждый раз, когда необходимо добавить стороний файл css в готовый external.min.css
+// --------------------------------------------------------------- //
+// Task: IMAGES. Оптимизация и перенос картинок в /dist/img
+// --------------------------------------------------------------- //
 
-// ----------------------------------------------------------------------------------------------------------------------------- //
-
-// ----------------------------------------------------------------------------------------------------------------------------- //
-// Task: Internal JS
-// ----------------------------------------------------------------------------------------------------------------------------- //
-gulp.task('internal:js', function() {
-
-    return gulp.src(src.js)
-        .pipe(plumber({
-            errorHandler: notify.onError(function (err) {
-                return {title: 'JavaScript error!', message: err.message}
-            })
-        }))
-        .pipe(concat(dest.minJs))
-        .pipe(uglify())
-        .pipe(sourceMaps.init())
-        .pipe(sourceMaps.write())
-        .pipe(gulp.dest(dest.js))
-        .pipe(browserSync.reload({
-            stream: true
-        }));
-});
-
-// ----------------------------------------------------------------------------------------------------------------------------- //
-// Task: External JS. Сборка и сжатие сторонних JS файлов с последующим перемещением готового файла в dist/js
-// ----------------------------------------------------------------------------------------------------------------------------- //
-gulp.task('external:js', function() {
-
-    return gulp.src(extJs) // Берем массив внешних библиотек JS
-        .pipe(concat('external.min.js')) // Собираем все библиоттеки в новом файле external.min.js
-        .pipe(uglify()) // Сжимаем файл
-        .pipe(gulp.dest(dest.js)); // Кладем готовый файл в папку dist/js 
-});
-
-// Данный таск нужно запускать вручную, чтобы создать файл external.min.js и поместить его в папку dist/js 
-// и каждый раз, когда необходимо добавить сторонюю библиотеку js в готовый файл external.min.js
-
-// ----------------------------------------------------------------------------------------------------------------------------- //
-// Task: Image
-// ----------------------------------------------------------------------------------------------------------------------------- //
-gulp.task('img', function () {
-
-    return gulp.src(src.img)
+gulp.task('images', function () {
+    return gulp.src('src/img/**/*.{png,svg,jpg}')
         .pipe(cache(imageMin({
             optimizationLevel: 3, 
             progressive: true, 
             interlaced: true
         })))
-        .pipe(gulp.dest(dest.img));
+        .pipe(gulp.dest('dist/img/'));
 });
 
-// ----------------------------------------------------------------------------------------------------------------------------- //
-// Task: Fonts. Переносим файлы шрифтов в dist/fonts
-// ----------------------------------------------------------------------------------------------------------------------------- //
-gulp.task('fonts', function() {
+// --------------------------------------------------------------- //
+// Task: STYLES. 
+// --------------------------------------------------------------- //
 
-    return gulp.src(src.fonts)
-        .pipe(gulp.dest(dest.fonts));
+gulp.task('styles', function() {
+    return gulp.src('src/scss/main.scss')
+        .pipe(wait(500))
+        .pipe(plumber({
+            errorHandler: notify.onError(function (error) {
+                return {title: 'SCSS error!', message: error.message}
+            })
+        }))
+        .pipe(gulpIf(isDevelopment, sourceMaps.init()))
+        .pipe(sass())
+        .pipe(autoPrefixer('last 2 versions'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(minifyCss())
+        .pipe(gulpIf(isDevelopment, sourceMaps.write()))
+        .pipe(gulp.dest('dist/css'))
+        .pipe(browserSync.stream())
 });
 
-// ----------------------------------------------------------------------------------------------------------------------------- //
-// Task: Build. Выполняем перенос шрифтов, картинок, сторонних CSS и JS файлов в dist
-// ----------------------------------------------------------------------------------------------------------------------------- //
-gulp.task('build', function(callback) {
-    runSequence([
-        'sass', 
-        'internal:js', 
-        'external:js', 
-        'external:css', 
-        'img', 
-        'fonts'], callback
-    );
+// --------------------------------------------------------------- //
+// Task: Vendor CSS. Сборка и сжатие сторонних CSS файлов с последующим 
+// перемещением готового файла в dist/css
+// --------------------------------------------------------------- //
+
+gulp.task('vendor:css', function() {
+    return gulp.src(vendorCss) // Берем массив сторонних CSS файлов
+        .pipe(concat('vendor.min.css')) // Собираем все в новом файле vendor.min.css
+        .pipe(minifyCss()) // Сжимаем файл
+        .pipe(gulp.dest('dist/css')); // Кладем готовый файл в папку dist/css
 });
 
-// ----------------------------------------------------------------------------------------------------------------------------- //
-// Task: Watch
-// ----------------------------------------------------------------------------------------------------------------------------- //
-gulp.task('watch', function() {
+// --------------------------------------------------------------- //
+// Task: Vendor JS. Сборка и сжатие сторонних JS файлов с последующим 
+// перемещением готового файла в dist/js
+// --------------------------------------------------------------- //
+
+gulp.task('vendor:js', function() {
+    return gulp.src(vendorJs) // Берем массив внешних библиотек JS
+        .pipe(concat('vendor.min.js')) // Собираем все в новом файле vendor.min.js
+        .pipe(uglify()) // Сжимаем файл
+        .pipe(gulp.dest('dist/js')); // Кладем готовый файл в папку dist/js 
+});
+
+// --------------------------------------------------------------- //
+// Task: JS. Сборка и сжатие своих файлов JS с последующим перемещением
+// готового файла в dist/js
+// --------------------------------------------------------------- //
+
+gulp.task('js', function() {
+    return gulp.src(jsModules)
+        .pipe(plumber({
+            errorHandler: notify.onError(function (error) {
+                return {title: 'JavaScript error!', message: error.message}
+            })
+        }))
+        .pipe(gulpIf(isDevelopment, sourceMaps.init()))
+        .pipe(concat('main.min.js'))
+        .pipe(uglify())
+        .pipe(gulpIf(isDevelopment, sourceMaps.write()))
+        .pipe(gulp.dest('dist/js'))
+});
+
+// --------------------------------------------------------------- //
+// Task: BrowserSync. Запускаем сервер. Предварительно выполнив задачи
+// HTML, FONTS, IMAGES, Vendor CSS, Vendor JS, STYLES, JS. Сервер 
+// наблюдает за папкой "./dist".
+// --------------------------------------------------------------- //
+
+gulp.task('browser-sync', [
+    'html',
+    'fonts',
+    'images',
+    'vendor:css',
+    'vendor:js',
+    'styles',
+    'js'  
+], function() {
     browserSync.init({
         server: {
-            baseDir: './dist'
+            baseDir: "./dist"
         }
     });
-    gulp.watch(src.sass, ['sass']);
-    gulp.watch(src.img, ['img']);
-    gulp.watch(src.js, ['internal:js']);
-    gulp.watch(dest.html).on('change', browserSync.reload);
+    browserSync.watch(['./dist/**/*.*', '!**/*.css'], browserSync.reload);
 });
 
-// ----------------------------------------------------------------------------------------------------------------------------- //
-// Task: Default
-// ----------------------------------------------------------------------------------------------------------------------------- //
-gulp.task('default', ['watch', 'sass', 'internal:js', 'img']);
+// --------------------------------------------------------------- //
+// Task: Watch.
+// --------------------------------------------------------------- //
 
-// ----------------------------------------------------------------------------------------------------------------------------- //
+gulp.task('watch', function() {
+    gulp.watch("src/*.html", ['html']);
+    gulp.watch("src/scss/**/*.scss", ['styles']);
+    gulp.watch("src/js/**/*.js", ['js']);
+    gulp.watch("src/img/**/*.*", ['images']);
+});
+
+// --------------------------------------------------------------- //
+// Task: Default.
+// --------------------------------------------------------------- //
+
+gulp.task('default', ['browser-sync', 'watch']);
+
+// --------------------------------------------------------------- //
+// Task: Clean.
+// --------------------------------------------------------------- //
+
+gulp.task('clean', function() {
+    return del(['dist'], {force: true}).then(paths => {
+        console.log('Deleted files and folders in dist');
+    });
+});
+
+// --------------------------------------------------------------- //
+// Task: Build. Выполняем перенос шрифтов, картинок, сторонних CSS и 
+// JS файлов в папку dist
+// --------------------------------------------------------------- //
+
+gulp.task('build', function(callback) {
+    runSequence(['clean'], [
+        'html',
+        'fonts',
+        'images',
+        'vendor:css',
+        'vendor:js',
+        'styles',
+        'js'
+    ], callback);
+});
+
+// --------------------------------------------------------------- //
+// Task: Deploy.
+// --------------------------------------------------------------- //
+
+gulp.task('deploy', function () {
+    return gulp.src('dist/**/*.*')
+        .pipe(sftp({
+            host: 'hostName',
+            user: 'userName',
+            pass: 'password',
+            remotePath: 'projectFolder/public_html/'
+        }));
+});
